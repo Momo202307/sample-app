@@ -15,6 +15,8 @@ docker build -t hello-app .
 docker images hello-app
 # コンテナの実行
 docker run -p 7001:7001 --name hello-app --rm hello-app
+# REST APIへのリクエスト(別のターミナルから)
+curl -X GET localhost:7001/api/hello
 ```
 
 ## 2回目課題(GitHub Actionsでビルドでしてjarをデプロイする)に関する情報
