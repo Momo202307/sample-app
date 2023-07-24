@@ -32,7 +32,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ !testOnly }}
+    if: testOnly != true
     needs: build-test
     permissions:
       contents: read
