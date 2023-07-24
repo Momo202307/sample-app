@@ -35,8 +35,8 @@ jobs:
   # かつ先行ジョブが完了してから実行される
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ !inputs.testOnly }}
-    needs: build-test
+    if: ${{ !inputs.testOnly }} # inputs.testOnly が false で
+    needs: build-test           # build-testジョブが完了してから
     permissions:
       contents: read
       packages: write
