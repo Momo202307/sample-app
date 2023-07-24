@@ -30,6 +30,10 @@ jobs:
         settings-path: ${{ github.workspace }}
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: echo
+      run: echo $TEST_ONLY
+      env:
+        TEST_ONLY: ${{ inputs.testOnly }}
 
   # deployジョブは inputs.testOnly が false で、
   # かつ先行ジョブが完了してから実行される
@@ -53,3 +57,7 @@ jobs:
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -DskipTests=true
       env:
         GITHUB_TOKEN: ${{ github.token }}
+    - name: echo
+      run: echo $TEST_ONLY
+      env:
+        TEST_ONLY: ${{ inputs.testOnly }}
