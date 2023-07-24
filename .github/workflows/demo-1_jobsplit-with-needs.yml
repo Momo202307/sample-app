@@ -1,6 +1,6 @@
 # 手動実行の場合はデフォルトでテストしか行わない。デプロイまで行いたい場合はメニューのチェックを付ける
 # それ以外のイベントではデプロイまで行う
-name: demo1
+name: demo-1_jobsplit-with-needs
 
 on:
   release:
@@ -35,8 +35,8 @@ jobs:
   # かつ先行ジョブが完了してから実行される
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ !inputs.testOnly }} # inputs.testOnly が false で
-    needs: build-test           # build-testジョブが完了してから
+    if: ${{ inputs.testOnly != 'true'}} # inputs.testOnly が false で
+    needs: build-test                   # build-testジョブが完了してから
     permissions:
       contents: read
       packages: write
