@@ -21,10 +21,7 @@
 		<version.plugin.jandex>1.1.0</version.plugin.jandex>
 		<version.plugin.helidon-build-tools>2.3.3</version.plugin.helidon-build-tools>
 		<!-- docker plugin settings -->
-		<image.registry>ghcr.io</image.registry>
-		<image.owner>ssi-mz-studygroup</image.owner>
 		<image.tag>latest</image.tag>
-		<image.cleanup>try</image.cleanup>
 	</properties>
 
 	<dependencyManagement>
@@ -142,16 +139,16 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.40.2</version>
 				<configuration>
-					<registry>${image.registry}</registry>
+					<registry>ghcr.io</registry>
 					<images>
 						<image>
-							<name>${image.owner}/hello-app</name>
+							<name>ssi-mz-studygroup/hello-app</name>
 							<build>
 								<tags>
 									<tag>${image.tag}</tag>
 								</tags>
 								<contextDir>${project.basedir}</contextDir>
-								<cleanup>${image.cleanup}</cleanup>
+								<cleanup>try</cleanup>
 							</build>
 						</image>
 					</images>
