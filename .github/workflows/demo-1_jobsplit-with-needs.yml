@@ -20,17 +20,23 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-    - name: echo
-      run: echo $TEST_ONLY
-      env:
-        TEST_ONLY: ${{ inputs.testOnly }}
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        server-id: github
+        settings-path: ${{ github.workspace }}
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
 
-  # deployジョブは inputs.testOnly が false で、
+  # deployジョブは inputs.testOnly が true じゃなく、
   # かつ先行ジョブが完了してから実行される
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ inputs.testOnly != true }} # inputs.testOnly が false で
-    needs: build-test                   # build-testジョブが完了してから
+    if: ${{ inputs.testOnly != true }} # inputs.testOnly が true じゃなく
+    needs: build-test                  # build-testジョブが完了してから
     permissions:
       contents: read
       packages: write
@@ -47,7 +53,3 @@ jobs:
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -DskipTests=true
       env:
         GITHUB_TOKEN: ${{ github.token }}
-    - name: echo
-      run: echo $TEST_ONLY
-      env:
-        TEST_ONLY: ${{ inputs.testOnly }}
