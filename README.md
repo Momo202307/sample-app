@@ -1,5 +1,3 @@
-これ反映してしょ♪
-
 # なにかAWSで動かしてみよう！勉強会
 - [kickoff資料 (6/27)](https://drive.google.com/file/d/13UmDCY0It_p6k5LcnncdKVXB5xfEkQYv/view?usp=sharing)
 - [1回目資料 (6/27)](https://drive.google.com/file/d/13Vtnb3wu9G2vnnJ2a7LoDRNizRwdMbnO/view?usp=sharing)
@@ -7,6 +5,8 @@
 - [3回目資料 (7/26)](https://drive.google.com/file/d/14KKmSNkCeAlNTSBny_Nj0gFUQmhcV2c9/view)
 
 ## 3回目課題(GitHub Actionsでコンテナイメージをビルドでしてデプロイする)に関する情報
+これ反映してしょ♪
+
 ### Dockerfileの確認（Dockerfileを作ってから行う）
 ```shell
 # jarのビルド
